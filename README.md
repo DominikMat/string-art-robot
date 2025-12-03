@@ -2,15 +2,15 @@
 
 A machine to draw string art designes on a circular ring of nails automatiacally,
 
-# sequence visualizer
-The sequence visuallizer is written in python and uses the turtle library, 
-it can display various different nails sequences, after which they 
-can be copied to the robot.
-
 # robot
 A servo and stepper motor controlled by a raspberry pi pico (the stepper also uses a 
 ULM2003 chip for control). The microcontroller reads the sequence and controls the 
 components to draw the design on the ring.
+
+# sequence visualizer
+The sequence visuallizer is written in python and uses the turtle library, 
+it can display various different nails sequences, after which they 
+can be copied to the robot.
 
 # gearing 
 the stepper motor and the nail ring are geared with a 4 to 1 reduction
