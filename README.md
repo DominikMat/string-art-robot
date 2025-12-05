@@ -20,3 +20,6 @@ the stepper motor and the nail ring are geared with a 4 to 1 reduction
 This robot has been created for the Intro to Robotics course at the University of the Aegean in Greece,
 the main components and functions are showns in the accompanying presentation:
 https://docs.google.com/presentation/d/1VIfVSTO9Wcaq9Rl0Zi-_Bw-y_5G3Nwj30t2qu21ZTrM/edit?usp=sharing
+
+Because of the bad weather on Samos island 05/12/2025 on the day of class, we have made a video of our final robot presentation.
+Available at link: https://drive.google.com/file/d/1XwlmAQR4rs1_c6xqZL0Uokjqz6scIsDI/view?usp=drivesdk
