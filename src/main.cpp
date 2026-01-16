@@ -85,12 +85,16 @@ void rotate_ring_to_nail(int nail_idx) {
     rotate_ring(abs(diff), diff > 0);
 }
 
+// ...
+
 void plot_around_nail (int nail_idx) {
     rotate_ring_to_nail (nail_idx);
     moveServo (servo_outside_angle);
     rotate_ring_to_nail ( (nail_idx+1) % num_nails );
     moveServo (servo_inside_angle);
 }
+
+// ...
 
 void setup() {
   Serial.begin(115200);
@@ -135,8 +139,8 @@ void loop() {
     rotate_ring_to_nail (double_bounce_star_sequence[1]);
     Serial.println("Please attach the string to the starting nail");
     Serial.println("  the nail under the servo arm is number 0");
-    Serial.print("  "); Serial.print(double_bounce_star_sequence[1]); Serial.println(" counting clockwise");
-    Serial.print("  "); Serial.print(num_nails - double_bounce_star_sequence[1]); Serial.println(" counting couter-clockwise");
+    Serial.print("  "); Serial.print(double_bounce_star_sequence[1]); Serial.println(" counting counter-clockwise");
+    Serial.print("  "); Serial.print(num_nails - double_bounce_star_sequence[1]); Serial.println(" counting clockwise");
     wait_for_user_confirm();
     
     Serial.print("");
