@@ -183,19 +183,19 @@ def pattern_full_coverage():
 SEQUENCE_LIST = [
     # Format: [Name, Function, List of parameter values]
     
-    # ["1. Star (Skip)", pattern_star_skip, [7, 13, 3]],
-    # ["2. Envelope Curve", pattern_envelope_curve, [1, 5]],
-    # ["3. ZigZag Layer", pattern_zigzag_layer, [12, 5]],
-    # ["4. Flower Mandala", pattern_flower_mandala, [None]],
+    ["1. Star (Skip)", pattern_star_skip, [7, 13, 3]],
+    ["2. Envelope Curve", pattern_envelope_curve, [1, 5]],
+    ["3. ZigZag Layer", pattern_zigzag_layer, [12, 5]],
+    ["4. Flower Mandala", pattern_flower_mandala, [None]],
     ["5. Double Bounce", pattern_double_bounce, [(7, 15),(11,17)]],
-    # ["6. Sierpinski Style", pattern_sierpinski_style, [3, 5]],
-    # ["7. Offset Cardioid", pattern_offset_cardioid, [1,2,3,4,5,6,7,8,9,10]],
-    # ["8. Progressive Spiral", pattern_progressive_spiral, [(1, 2), (3, 1)]],
-    # ["9. Inward Outward", pattern_inward_outward, [(2, 10)]],
-    # # ["10. Triple Star", pattern_triple_star, [(3, 8), (4, 7)]],
-    # ["11. Half & Quarter", pattern_half_and_quarter, [(14, 6)]],
-    # ["12. Chaos Random", pattern_chaos_random, [None]],
-    # ["13. Full Coverage", pattern_full_coverage, [None]]
+    ["6. Sierpinski Style", pattern_sierpinski_style, [3, 5]],
+    ["7. Offset Cardioid", pattern_offset_cardioid, [1,2,3,4,5,6,7,8,9,10]],
+    ["8. Progressive Spiral", pattern_progressive_spiral, [(1, 2), (3, 1)]],
+    ["9. Inward Outward", pattern_inward_outward, [(2, 10)]],
+    ["10. Triple Star", pattern_triple_star, [(3, 8), (4, 7)]],
+    ["11. Half & Quarter", pattern_half_and_quarter, [(14, 6)]],
+    ["12. Chaos Random", pattern_chaos_random, [None]],
+    ["13. Full Coverage", pattern_full_coverage, [None]]
 ]
 
 # ==========================================
@@ -273,72 +273,59 @@ def main():
     global WAIT_FOR_KEY_PRESS
     t_line, t_text, screen = setup_turtle()
     
-    # Draw static nails
+    # Draw static nails once at the start
     draw_pins(t_line)
     
-    # Turn off animation for fast drawing
+    # Turn off animation for instant drawing
     screen.tracer(0) 
     
-    first_run = True
-
     for seq_data in SEQUENCE_LIST:
         name, func, params_list = seq_data
         
         for param in params_list:
-            
-            # 1. WAIT BLOCK (after the first pattern)
-            if not first_run:
-                WAIT_FOR_KEY_PRESS = True
-                display_sequence_name(t_text, name, param_display, wait=True)
-                screen.update() # Draws the message
-                
-                # Wait in loop until WAIT_FOR_KEY_PRESS flag is changed by handle_key_press()
-                while WAIT_FOR_KEY_PRESS:
-                    # This allows Tkinter window to handle events (like key press)
-                    screen.update() 
-                    time.sleep(0.01) # Small delay for performance
-            
-            # 2. PARAMETER GENERATION
+            if param is None:
+                param_display = "Default"
+            else:
+                param_display = str(param)
+
+            # Generate the actual sequence points
             if param is None:
                 seq = func()
-                param_display = "Default"
             elif isinstance(param, tuple):
                 seq = func(*param)
-                param_display = str(param)
             else:
                 seq = func(param)
-                param_display = str(param)
             
-            # 3. CLEARING AND DRAWING
-            
-            # We use .clear(), which should work correctly if window is not closed.
+            # 2. DRAWING
             t_line.clear() 
-            
-            # Resetting speed and pen state after clear
-            t_line.speed(ANIMATION_SPEED) 
             t_line.penup()
-            
             draw_pins(t_line) 
             
-            # Update label without "CLICK" message
-            display_sequence_name(t_text, name, param_display) 
+            # Update label to show what is currently being drawn
+            display_sequence_name(t_text, name, param_display, wait=False) 
             
-            # Drawing the sequence
+            # Draw the lines
             draw_sequence(t_line, seq, color="#00FFFF") 
             
-            # Manual screen refresh so pattern appears immediately
-            screen.update() 
-            
-            # Mark that the first pattern has been drawn
-            first_run = False 
-            
-            # Print sequence to console
+            # Print to console immediately
             print(f"--- {name} ({param_display}) ---")
             print(f"Sequence length: {len(seq)} moves")
             print(f"Sequence: {seq}") 
+
+            # Refresh screen to show the finished pattern
+            screen.update() 
+            
+            # 3. WAIT FOR USER (Pause after drawing is done)
+            WAIT_FOR_KEY_PRESS = True
+            # Update text to show the "Press Space" prompt
+            display_sequence_name(t_text, name, param_display, wait=True)
+            screen.update()
+            
+            while WAIT_FOR_KEY_PRESS:
+                screen.update() 
+                time.sleep(0.01) 
             
     print("\nEnd of all sequences. Click in the window to close.")
     screen.exitonclick()
-
 if __name__ == "__main__":
     main()
