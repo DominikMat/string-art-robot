@@ -5,14 +5,22 @@ A machine to automatically draw string art designs on a circular ring of nails.
 ## Project Overview
 
 **Team Members:** 
-Dominik Matuszczyk (PL)
-Dizha Oleksii (UA) 
-Tkachuk Nikita (UA)
+- Dominik Matuszczyk (PL)
+- Dizha Oleksii (UA) 
+- Tkachuk Nikita (UA)
 
 This robot was created for the Intro to Robotics course at the University of the Aegean (Fall Semester 2025/26) during our Erasmus trips. 
 The system uses a computer-generated sequence to physically wind string around a ring of nails to create geometric patterns.
 
 ---
+
+## Links & Media
+To see our creation you can view our presentation file or our video presentation (made because of bad weather on Samos island on the day of class)
+* Project Presentation: https://docs.google.com/presentation/d/1VIfVSTO9Wcaq9Rl0Zi-_Bw-y_5G3Nwj30t2qu21ZTrM/edit?usp=sharing
+* Demo Video: https://drive.google.com/file/d/1XwlmAQR4rs1_c6xqZL0Uokjqz6scIsDI/view?usp=drivesdk
+* Demo Video YouTube (if above not working): https://youtu.be/TUs5X3Doydk
+---
+
 
 ## 🔌 Hardware Wiring
 The wiring involves connecting the Servo directly to the Pico and the Stepper Motor via the ULN2003 driver chip.
@@ -103,9 +111,3 @@ lib_deps =
 3. The program will display the design in a window. Press SPACE or ENTER to cycle through patterns.
 4. The numerical nail sequence will print to your terminal.
 5. Copy that sequence and paste it into the "nailSequence" array in your main.cpp before flashing.
-
----
-
-## Links & Media
-* Project Presentation: https://docs.google.com/presentation/d/1VIfVSTO9Wcaq9Rl0Zi-_Bw-y_5G3Nwj30t2qu21ZTrM/edit?usp=sharing
-* Demo Video: https://drive.google.com/file/d/1XwlmAQR4rs1_c6xqZL0Uokjqz6scIsDI/view?usp=drivesdk
